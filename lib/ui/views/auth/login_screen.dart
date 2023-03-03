@@ -80,7 +80,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     Gap(40.h),
                     PrimaryButton(
-                      onTap: () {},
+                      onTap: () {
+                        model.navigateToHomeScreen();
+                      },
                       btnText: 'Sign in My Account',
                       height: 60,
                     ),

@@ -4,10 +4,5 @@ class AppConstants {
   AppConstants._();
 
   static get kBaseUrl => dotenv.get('KBaseUrl', fallback: '');
-
-  static get paystackPublicKey => dotenv.get('PaystackPublicKey', fallback: '');
-
-  static get paystackSecretKey => dotenv.get('PaystackSecretKey', fallback: '');
-
-  static get oAuthClientId => dotenv.get('OAuthClientId', fallback: '');
+  static get kBaseAPIKEY => dotenv.get('kAPIKEY', fallback: '');
 }

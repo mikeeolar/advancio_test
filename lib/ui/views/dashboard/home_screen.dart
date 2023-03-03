@@ -263,91 +263,98 @@ class NewsPromoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CustomText(
-          text: 'News and promo',
-          fontSize: 18,
-          color: kDarkColor,
-          fontWeight: FontWeight.w700,
-        ),
-        Gap(15.h),
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: kLightColor,
-            boxShadow: [
-              BoxShadow(
-                offset: const Offset(0, 30),
-                blurRadius: 60,
-                spreadRadius: 0,
-                color: Colors.black.withOpacity(0.0791),
-              )
-            ],
+    return BaseView<AppViewModel>(
+      builder: (context, model, child) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const CustomText(
+            text: 'News and promo',
+            fontSize: 18,
+            color: kDarkColor,
+            fontWeight: FontWeight.w700,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
+          Gap(15.h),
+          GestureDetector(
+            onTap: () {
+              model.navigateToNewsScreen();
+            },
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: kLightColor,
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(0, 30),
+                    blurRadius: 60,
+                    spreadRadius: 0,
+                    color: Colors.black.withOpacity(0.0791),
+                  )
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10)),
-                    child: Image.asset(
-                      'assets/images/character.png',
-                      color: kPrimaryColor,
-                      colorBlendMode: BlendMode.hue,
-                    ),
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)),
+                        child: Image.asset(
+                          'assets/images/character.png',
+                          color: kPrimaryColor,
+                          colorBlendMode: BlendMode.hue,
+                        ),
+                      ),
+                      const Positioned(
+                        top: 50,
+                        right: 30,
+                        child: CustomText(
+                          text: 'Get \$12 free!',
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                          color: kLightColor,
+                        ),
+                      )
+                    ],
                   ),
-                  const Positioned(
-                    top: 50,
-                    right: 30,
-                    child: CustomText(
-                      text: 'Get \$12 free!',
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      color: kLightColor,
+                  Gap(10.h),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CustomText(
+                          text: 'Share Invite your friends!',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: kDarkColor,
+                        ),
+                        const Gap(10),
+                        const CustomText(
+                          text:
+                              'Invite friends register on our app. For every user you invite. you can earn up \$12',
+                          fontSize: 13,
+                          color: kDarkColor,
+                        ),
+                        Gap(10.h),
+                        const CustomText(
+                          text: 'Invite Now',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 15,
+                          color: kPrimaryColor,
+                        ),
+                        const Gap(20),
+                      ],
                     ),
                   )
                 ],
               ),
-              Gap(10.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomText(
-                      text: 'Share Invite your friends!',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                      color: kDarkColor,
-                    ),
-                    const Gap(10),
-                    const CustomText(
-                      text:
-                          'Invite friends register on our app. For every user you invite. you can earn up \$12',
-                      fontSize: 13,
-                      color: kDarkColor,
-                    ),
-                    Gap(10.h),
-                    const CustomText(
-                      text: 'Invite Now',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                      color: kPrimaryColor,
-                    ),
-                    const Gap(20),
-                  ],
-                ),
-              )
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

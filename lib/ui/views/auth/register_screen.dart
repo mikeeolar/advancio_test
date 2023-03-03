@@ -117,6 +117,7 @@ class RegisterScreen extends StatelessWidget {
                                 fullName: model.fullNameCtrl.text,
                                 email: model.emailCtrl.text,
                                 password: model.passwordCtrl.text,
+                                context: context,
                               );
                             },
                             btnText: 'Sign up My Account',

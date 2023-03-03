@@ -3,6 +3,8 @@ import 'package:advancio_test/ui/views/auth/login_screen.dart';
 import 'package:advancio_test/ui/views/auth/register_screen.dart';
 import 'package:advancio_test/ui/views/auth/pin_screen.dart';
 import 'package:advancio_test/ui/views/dashboard/home_screen.dart';
+import 'package:advancio_test/ui/views/dashboard/news_content_screen.dart';
+import 'package:advancio_test/ui/views/dashboard/news_screen.dart';
 import 'package:advancio_test/ui/views/startup/startup_screen.dart';
 import 'package:advancio_test/ui/views/transfer/bank_transfer_screen.dart';
 import 'package:advancio_test/ui/views/transfer/transfer_screen.dart';
@@ -19,6 +21,8 @@ class Routes {
   static const String transferScreen = '/transfer-screen';
   static const String bankTransferScreen = '/bank-transfer-screen';
   static const String transferSuccessScreen = '/transfer-success-screen';
+  static const String newsScreen = '/news-screen';
+  static const String newsContentScreen = '/news-content-screen';
 }
 
 class AppRouter {
@@ -42,6 +46,20 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const BankTransferScreen());
       case Routes.transferSuccessScreen:
         return MaterialPageRoute(builder: (_) => const TransferSuccessScreen());
+      case Routes.newsScreen:
+        return MaterialPageRoute(builder: (_) => const NewsScreen());
+      case Routes.newsContentScreen:
+        final data = settings.arguments! as Map<String, dynamic>;
+        final image = data['image'] as String;
+        final content = data['content'] as String;
+        final title = data['title'] as String;
+        return MaterialPageRoute(
+          builder: (_) => NewsContentScreen(
+            image: image,
+            content: content,
+            title: title,
+          ),
+        );
 
       default:
         return MaterialPageRoute(builder: (_) => Container());

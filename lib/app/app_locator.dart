@@ -1,5 +1,6 @@
 import 'package:advancio_test/core/base/navigation_service.dart';
 import 'package:advancio_test/core/services/authentication_service.dart';
+import 'package:advancio_test/core/services/news_service.dart';
 import 'package:advancio_test/core/view_models/account_viewmodel.dart';
 import 'package:advancio_test/core/view_models/app_viewmodel.dart.dart';
 import 'package:advancio_test/core/view_models/authentication_viewmodel.dart';
@@ -16,6 +17,7 @@ void setUpLocator() {
 
   // API Services
   locator.registerLazySingleton(() => AuthenticationService());
+  locator.registerLazySingleton(() => NewsService());
 
   // View Models
   locator.registerSingleton(AuthenticationViewModel());

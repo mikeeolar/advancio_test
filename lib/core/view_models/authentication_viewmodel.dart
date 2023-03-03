@@ -7,6 +7,7 @@ import 'package:advancio_test/core/base/navigation_service.dart';
 import 'package:advancio_test/core/base/session_services.dart';
 import 'package:advancio_test/core/enum/view_state.dart';
 import 'package:advancio_test/core/services/authentication_service.dart';
+import 'package:advancio_test/ui/common/ui_config.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationViewModel extends BaseViewModel {
@@ -57,11 +58,33 @@ class AuthenticationViewModel extends BaseViewModel {
     rebuildUi();
   }
 
-  Future<void> register({
-    required String fullName,
-    required String email,
-    required String password,
-  }) async {
+  Future<void> register(
+      {required String fullName,
+      required String email,
+      required String password,
+      context}) async {
+    if (fullName.isEmpty) {
+      UiConfig.showResponseDialog(
+        context: context,
+        message: 'Please enter your full name',
+        title: 'Error',
+      );
+      return;
+    } else if (email.isEmpty) {
+      UiConfig.showResponseDialog(
+        context: context,
+        message: 'Please enter your email',
+        title: 'Error',
+      );
+      return;
+    } else if (password.isEmpty) {
+      UiConfig.showResponseDialog(
+        context: context,
+        message: 'Please enter your password',
+        title: 'Error',
+      );
+      return;
+    }
     setState(ViewState.busy);
     try {
       final id = await _authenticationService.register(
@@ -108,16 +131,16 @@ class AuthenticationViewModel extends BaseViewModel {
     await _navigationService.navigateTo(Routes.registerScreen);
   }
 
+  Future navigateToHomeScreen() async {
+    await _navigationService.replaceWith(Routes.homeScreen);
+  }
+
   Future navigateToLoginScreen() async {
     await _navigationService.navigateTo(Routes.loginScreen);
   }
 
   Future navigateToAccountCreatedcreen() async {
     await _navigationService.navigateTo(Routes.accountCreatedScreen);
-  }
-
-  Future navigateToHomeScreen() async {
-    await _navigationService.replaceWith(Routes.homeScreen);
   }
 
   Future navigateToSetupPincreen() async {

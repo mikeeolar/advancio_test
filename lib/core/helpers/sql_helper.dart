@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:advancio_test/core/models/user.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
 class SQLHelper {
@@ -41,6 +42,18 @@ class SQLHelper {
       conflictAlgorithm: sql.ConflictAlgorithm.replace,
     );
     return id;
+  }
+
+  Future<User> login({required String email, required String password}) async {
+    var db = await SQLHelper.openDatabase();
+    var res = await db.rawQuery(
+        "SELECT * FROM users WHERE email = '$email' and password = '$password'");
+
+    if (res.isNotEmpty) {
+      return User.fromMap(res.first);
+    } else {
+      return User.fromMap(res);
+    }
   }
 
   static Future<int> updateUser({
